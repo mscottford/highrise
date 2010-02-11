@@ -16,3 +16,7 @@ require 'highrise/person'
 require 'highrise/task'
 require 'highrise/user'
 require 'highrise/tag'
+
+module Highrise
+  PAGE_LIMIT = 500
+end
