@@ -31,14 +31,14 @@ describe Highrise::Base do
   describe "recordings" do
     it "should delegate to find all from /recordings.xml since date" do
       date = Time.now
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date}}).and_return(@expected_result_array)
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format}}).and_return(@expected_result_array)
       Highrise::Base.recordings(date).should == @expected_result_array
     end
     
     it "should ask for more data if the returned set contains the same number of items as the page limit" do
       date = Time.now
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date}}).and_return(@expected_result_array_max_items)
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date, :n => Highrise::PAGE_LIMIT}}).and_return(@expected_result_array)      
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format}}).and_return(@expected_result_array_max_items)
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format, :n => Highrise::PAGE_LIMIT}}).and_return(@expected_result_array)      
       result = Highrise::Base.recordings(date)
       (result & @expected_result_array_max_items).should == @expected_result_array_max_items
       (result & @expected_result_array).should == @expected_result_array
@@ -48,9 +48,9 @@ describe Highrise::Base do
     it "should ask for more data again if the second returned set contains the same number of items as the page limit" do
       cloned_max_results_array = @expected_result_array_max_items.dclone
       date = Time.now
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date}}).and_return(@expected_result_array_max_items)
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date, :n => Highrise::PAGE_LIMIT}}).and_return(cloned_max_results_array)      
-      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date, :n => Highrise::PAGE_LIMIT * 2}}).and_return(@expected_result_array)      
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format}}).and_return(@expected_result_array_max_items)
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format, :n => Highrise::PAGE_LIMIT}}).and_return(cloned_max_results_array)      
+      Highrise::Base.should_receive(:find).with(:all, {:from => "/recordings.xml", :params => {:since => date.highrise_format, :n => Highrise::PAGE_LIMIT * 2}}).and_return(@expected_result_array)      
       result = Highrise::Base.recordings(date)
       (result & @expected_result_array_max_items).should == @expected_result_array_max_items
       (result & cloned_max_results_array).should == cloned_max_results_array

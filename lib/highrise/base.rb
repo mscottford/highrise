@@ -20,12 +20,12 @@ module Highrise
     end
     
     def self.recordings(since_date)
-      result = find(:all, {:from => "/recordings.xml", :params => {:since => since_date}})
+      result = find(:all, {:from => "/recordings.xml", :params => {:since => since_date.highrise_format}})
       
       last_result = result
       page_index = 1
       while last_result.length == PAGE_LIMIT
-        last_result = find(:all, {:from => "/recordings.xml", :params => {:since => since_date, :n => page_index * PAGE_LIMIT}})        
+        last_result = find(:all, {:from => "/recordings.xml", :params => {:since => since_date.highrise_format, :n => page_index * PAGE_LIMIT}})        
         page_index += 1
         result = result + last_result
       end
