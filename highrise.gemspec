@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Marcos Tapaj\303\263s", "Ken Mayer"]
-  s.date = %q{2010-02-10}
+  s.date = %q{2010-02-21}
   s.description = %q{
 Based on the original API module from DHH, http://developer.37signals.com/highrise/, this
 gem is a cleaned up, tested version of the same. Contributors have added support for tags 
@@ -43,6 +43,7 @@ Highrise::Base.user = 'your_api_auth_token'
      "lib/highrise/base.rb",
      "lib/highrise/comment.rb",
      "lib/highrise/company.rb",
+     "lib/highrise/date_format.rb",
      "lib/highrise/email.rb",
      "lib/highrise/group.rb",
      "lib/highrise/kase.rb",
@@ -59,8 +60,10 @@ Highrise::Base.user = 'your_api_auth_token'
      "spec/highrise/base_spec.rb",
      "spec/highrise/comment_spec.rb",
      "spec/highrise/company_spec.rb",
+     "spec/highrise/date_format_spec.rb",
      "spec/highrise/email_spec.rb",
      "spec/highrise/group_spec.rb",
+     "spec/highrise/highrise_spec.rb",
      "spec/highrise/kase_spec.rb",
      "spec/highrise/membership_spec.rb",
      "spec/highrise/note_spec.rb",
@@ -84,6 +87,7 @@ Highrise::Base.user = 'your_api_auth_token'
      "spec/highrise/base_spec.rb",
      "spec/highrise/comment_spec.rb",
      "spec/highrise/company_spec.rb",
+     "spec/highrise/date_format_spec.rb",
      "spec/highrise/email_spec.rb",
      "spec/highrise/group_spec.rb",
      "spec/highrise/highrise_spec.rb",
